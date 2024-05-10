@@ -1,42 +1,82 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+html, body {
+  height: 100%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.default-theme {
+
+  /*--main-background: #fff;*/
+  /*--second-background: #f0f2f5;*/
+  --sidebar-trigger-background: #001529;
+
+  --primary-color: #009805;
+
+  --border-color: #d9d9d9;
+
+  --register-form-shadow-color: rgba(0, 0, 0, 0.4);
+
+  --light-primary-color: hsla(122, 39%, 49%, 1);
+
+  --link-color: mediumseagreen;
+  --link-hover-color: #009805;
+
+  --authorized-status-color: #4CAE4FFF;
+  --not-authorized-status-color: rgb(255, 39, 39);
+  --starting-status-color: #1890ff;
+  --warning-status-color: #ff9100;
+
+  --second-color-hover: #002cd5;
+
+  --scrollbar-color: mediumseagreen;
+
+  --price-color: mediumseagreen;
 }
 
-.card {
-  padding: 2em;
+Button.ant-btn-primary {
+  background-color: var(--light-primary-color);
+  border-color: var(--light-primary-color);
+  box-shadow: 0 0 4px #999;
+  outline: none;
+  background-position: center;
+  transition: background 0.8s;
 }
 
-.read-the-docs {
-  color: #888;
+
+Button.ant-btn-primary:hover, Button.ant-btn-primary:focus {
+  background: #009805 radial-gradient(circle, transparent 1%, var(--light-primary-color) 1%) center/15000%;
+}
+
+
+Button.ant-btn-primary:not(:disabled):active {
+  background-color: rgb(46, 107, 48);
+  background-size: 100%;
+  transition: background 0s;
+}
+
+
+Button.simpleType:not(:disabled):hover, Button.simpleType:focus {
+  background-color: #009805;
+}
+
+
+Button.simpleType:disabled:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+
+Button.extend {
+  padding: 0 40px;
+  margin: 5px 0;
 }

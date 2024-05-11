@@ -3,6 +3,7 @@ import { FC, useMemo } from 'react';
 import { Tabs, TabsProps } from 'antd';
 
 import AnalyzeTextForm from './analyze-text-form';
+import AnalyzeYoutubeCommentsForm from './analyze-youtube-comments-form';
 
 const TabMenu: FC = () => {
   const items: TabsProps['items'] = useMemo(
@@ -20,7 +21,7 @@ const TabMenu: FC = () => {
       {
         key: '3',
         label: 'Youtube Comments',
-        children: 'Content of Tab Pane 3',
+        children: <AnalyzeYoutubeCommentsForm />,
       },
     ],
     []

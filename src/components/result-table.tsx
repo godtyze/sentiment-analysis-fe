@@ -2,18 +2,15 @@ import { FC } from 'react';
 
 import { Table, TableProps } from 'antd';
 
-import { AnalyzeTextResponse } from 'common';
-
-interface DataType {
-  key: string;
-  text: string;
-  author: string;
-  published_at: string;
-  sentiment: AnalyzeTextResponse['sentiment'];
-}
+import {
+  AnalyzeTextResponse,
+  AnalyzeYoutubeCommentsResponse,
+  DataType,
+  getTableData,
+} from 'common';
 
 interface ResultTableProps {
-  result?: AnalyzeTextResponse;
+  result?: AnalyzeTextResponse | AnalyzeYoutubeCommentsResponse;
   loading: boolean;
 }
 
@@ -54,17 +51,7 @@ const columns: TableProps<DataType>['columns'] = [
 ];
 
 const ResultTable: FC<ResultTableProps> = ({ result, loading }) => {
-  const dataSource: DataType[] = result
-    ? [
-        {
-          key: '1',
-          text: result.text,
-          author: 'You',
-          published_at: new Date().toISOString(),
-          sentiment: result.sentiment,
-        },
-      ]
-    : [];
+  const dataSource: DataType[] = result ? getTableData(result) : [];
 
   return (
     <Table
@@ -74,9 +61,9 @@ const ResultTable: FC<ResultTableProps> = ({ result, loading }) => {
       size="large"
       loading={loading}
       pagination={{
-        pageSize: 10,
+        pageSize: 8,
       }}
-    ></Table>
+    />
   );
 };
 

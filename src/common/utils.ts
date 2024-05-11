@@ -1,4 +1,11 @@
-import { AnalyzeTextResponse, AnalyzeYoutubeCommentsResponse, DataType } from './types';
+import { RcFile } from 'antd/es/upload';
+
+import {
+  AnalyzeFileResponse,
+  AnalyzeTextResponse,
+  AnalyzeYoutubeCommentsResponse,
+  DataType,
+} from './types';
 
 export const extractVideoID = (url: string) => {
   const regex =
@@ -8,7 +15,7 @@ export const extractVideoID = (url: string) => {
 };
 
 export const getTableData = (
-  data: AnalyzeTextResponse | AnalyzeYoutubeCommentsResponse
+  data: AnalyzeTextResponse | AnalyzeYoutubeCommentsResponse | AnalyzeFileResponse
 ): DataType[] => {
   if (isTextResult(data)) {
     return [
@@ -25,12 +32,20 @@ export const getTableData = (
   return data.map((comment, idx) => ({
     key: idx.toString(),
     text: comment.text,
-    author: comment.author,
-    published_at: comment.published_at,
+    author: 'author' in comment ? comment.author : 'You',
+    published_at: 'published_at' in comment ? comment.published_at : new Date().toISOString(),
     sentiment: comment.sentiment,
   }));
 };
 
 const isTextResult = (data: unknown): data is AnalyzeTextResponse => {
   return typeof data === 'object' && !Array.isArray(data);
+};
+
+export const createFormData = (columnName: string, file: RcFile): FormData => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('column_name', columnName);
+
+  return formData;
 };

@@ -4,6 +4,7 @@ import { Tabs, TabsProps } from 'antd';
 
 import AnalyzeTextForm from './analyze-text-form';
 import AnalyzeYoutubeCommentsForm from './analyze-youtube-comments-form';
+import UploadForm from './upload-form';
 
 const TabMenu: FC = () => {
   const items: TabsProps['items'] = useMemo(
@@ -16,7 +17,7 @@ const TabMenu: FC = () => {
       {
         key: '2',
         label: 'File Upload',
-        children: 'Content of Tab Pane 2',
+        children: <UploadForm />,
       },
       {
         key: '3',

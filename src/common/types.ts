@@ -12,18 +12,22 @@ export interface AnalyzeYoutubeCommentsRequestParams {
 }
 
 export type AnalyzeYoutubeCommentsResponse = YoutubeCommentSentiment[];
+export type AnalyzeFileResponse = CommentSentiment[];
 
 interface Prediction {
   label: 'positive' | 'negative' | 'neutral';
   score: number;
 }
 
-export interface YoutubeCommentSentiment {
+export interface CommentSentiment {
+  sentiment: Prediction[];
+  text: string;
+}
+
+export interface YoutubeCommentSentiment extends CommentSentiment {
   author: string;
   like_count: number;
   published_at: string;
-  sentiment: Prediction[];
-  text: string;
   updated_at: string;
 }
 

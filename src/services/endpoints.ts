@@ -1,5 +1,6 @@
 import { baseAPI } from './api-service';
 import {
+  AnalyzeFileResponse,
   AnalyzeTextRequestParams,
   AnalyzeTextResponse,
   AnalyzeYoutubeCommentsRequestParams,
@@ -26,7 +27,16 @@ export const endpoints = baseAPI.injectEndpoints({
         body: params,
       }),
     }),
+
+    uploadFile: builder.mutation<AnalyzeFileResponse, FormData>({
+      query: (params) => ({
+        url: '/upload',
+        method: 'POST',
+        body: params,
+      }),
+    }),
   }),
 });
 
-export const { useAnalyzeTextMutation, useAnalyzeYoutubeCommentsMutation } = endpoints;
+export const { useAnalyzeTextMutation, useAnalyzeYoutubeCommentsMutation, useUploadFileMutation } =
+  endpoints;

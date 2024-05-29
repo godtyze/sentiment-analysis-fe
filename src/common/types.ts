@@ -11,20 +11,20 @@ export interface AnalyzeYoutubeCommentsRequestParams {
   video_id: string;
 }
 
-export type AnalyzeYoutubeCommentsResponse = YoutubeCommentSentiment[];
-export type AnalyzeFileResponse = CommentSentiment[];
+export type AnalyzeYoutubeCommentsResponse = YoutubeCommentPrediction[];
+export type AnalyzeFileResponse = CommentPrediction[];
 
-interface Prediction {
+export interface Prediction {
   label: 'positive' | 'negative' | 'neutral';
   score: number;
 }
 
-export interface CommentSentiment {
+export interface CommentPrediction {
   sentiment: Prediction[];
   text: string;
 }
 
-export interface YoutubeCommentSentiment extends CommentSentiment {
+export interface YoutubeCommentPrediction extends CommentPrediction {
   author: string;
   like_count: number;
   published_at: string;
@@ -36,5 +36,12 @@ export interface DataType {
   text: string;
   author: string;
   published_at: string;
-  sentiment: AnalyzeTextResponse['sentiment'];
+  sentiment: Sentiment;
 }
+
+export type Sentiment =
+  | 'Positive'
+  | 'Close to Positive'
+  | 'Neutral'
+  | 'Close to Negative'
+  | 'Negative';

@@ -69,7 +69,7 @@ const UploadForm: FC = () => {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" loading={isLoading}>
-            Analyze Comments
+            Analyze File
           </Button>
         </Form.Item>
       </Form>

@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { Table, TableProps } from 'antd';
 
 import {
+  AnalyzeFileResponse,
   AnalyzeTextResponse,
   AnalyzeYoutubeCommentsResponse,
   DataType,
@@ -10,7 +11,7 @@ import {
 } from 'common';
 
 interface ResultTableProps {
-  result?: AnalyzeTextResponse | AnalyzeYoutubeCommentsResponse;
+  result?: AnalyzeTextResponse | AnalyzeYoutubeCommentsResponse | AnalyzeFileResponse;
   loading: boolean;
 }
 
@@ -38,15 +39,6 @@ const columns: TableProps<DataType>['columns'] = [
     dataIndex: 'sentiment',
     key: 'sentiment',
     width: '40%',
-    render: (_, record) => (
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {record.sentiment.map((el) => (
-          <span key={el.label}>
-            {el.label}: {el.score}
-          </span>
-        ))}
-      </div>
-    ),
   },
 ];
 
